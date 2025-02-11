@@ -6,3 +6,5 @@ veuiller placer les fichiers csv
 
 Le script d'extraction prend en compte le csv listings summary qui contient 18 colonne au lieu de 75. Le csv summary
 et le détaillé contiennent le même nombre de ligne. 
+
+listings summary : https://data.insideairbnb.com/france/ile-de-france/paris/2024-12-06/visualisations/listings.csv
