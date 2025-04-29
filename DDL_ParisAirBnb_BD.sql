@@ -1,5 +1,5 @@
 -- Création de la base de données
-CREATE DATABASE parisAirBnB;
+CREATE DATABASE airbnb_paris;
 
 -- Après avoir créer la BD, se connecter dessus et passer le script
 
@@ -10,10 +10,10 @@ CREATE TABLE neighbourhoods (
     PRIMARY KEY (neighbourhood_group, neighbourhood)
 );
 
--- Table listing
--- Table listing
-CREATE TABLE listing (
-    id BIGINT PRIMARY KEY,  
+-- Table listings
+CREATE TABLE listings (
+    row_id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL,  
     name VARCHAR(255),
     host_id BIGINT NOT NULL,  
     host_name VARCHAR(255),
@@ -31,32 +31,21 @@ CREATE TABLE listing (
     availability_365 INT,
     number_of_reviews_ltm INT,
     license VARCHAR(255) NULL,
+    trimestre INT NOT NULL,
+    UNIQUE (id, trimestre),
     FOREIGN KEY (neighbourhood_group, neighbourhood) 
         REFERENCES neighbourhoods(neighbourhood_group, neighbourhood)
         ON DELETE CASCADE
 );
 
--- Table calendar
-CREATE TABLE calendar (
-    listing_id BIGINT,  
-    date DATE,
-    available BOOLEAN,
-    price DECIMAL(10,2) NULL,
-    adjusted_price DECIMAL(10,2) NULL,
-    minimum_nights INT,
-    maximum_nights INT,
-    PRIMARY KEY (listing_id, date),
-    FOREIGN KEY (listing_id) REFERENCES listing(id) ON DELETE CASCADE
-);
+
 
 -- Table reviews
 CREATE TABLE reviews (
     listing_id BIGINT,  
-    id BIGSERIAL PRIMARY KEY,
+    row_id BIGSERIAL PRIMARY KEY,
     date DATE NOT NULL,
-    reviewer_id BIGINT NOT NULL,  
-    reviewer_name VARCHAR(255),
-    comments TEXT,
-    FOREIGN KEY (listing_id) REFERENCES listing(id) ON DELETE CASCADE
+    trimestre INT NOT NULL,
+    FOREIGN KEY (listing_id, trimestre) REFERENCES listings(id, trimestre) ON DELETE CASCADE
 );
 

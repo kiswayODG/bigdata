@@ -1,0 +1,10 @@
+import pickle
+from your_model_library import YourModel  # Replace with your actual model import
+
+# Train your model
+model = YourModel()
+model.fit(X_train, y_train)  # Replace with your actual training data
+
+# Save the model to a file
+with open('models/amenity_detection_model.pkl', 'wb') as file:
+    pickle.dump(model, file)
