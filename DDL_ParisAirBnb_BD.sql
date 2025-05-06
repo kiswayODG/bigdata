@@ -1,16 +1,12 @@
--- Création de la base de données
 CREATE DATABASE airbnb_paris;
 
--- Après avoir créer la BD, se connecter dessus et passer le script
 
--- Table neighbourhoods
 CREATE TABLE neighbourhoods (
     neighbourhood_group VARCHAR(255),
     neighbourhood VARCHAR(255),
     PRIMARY KEY (neighbourhood_group, neighbourhood)
 );
 
--- Table listings
 CREATE TABLE listings (
     row_id BIGSERIAL PRIMARY KEY,
     id BIGINT NOT NULL,  
